@@ -6,10 +6,12 @@ const pergunta = connection.define('pergunta', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    decricao:{
+    descricao:{
         type: Sequelize.TEXT,
         allowNull: false
     }
 });
 
 pergunta.sync({force: false}).then(() => {})
+
+module.exports = pergunta
