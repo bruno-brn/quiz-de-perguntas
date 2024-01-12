@@ -14,5 +14,17 @@
     <p>Linguagem favorita: <%= lang %> </p>
     <p>Empresa: <%= empresa %></p>
 
+    <% if(menssagem == true){%>
+        <h3> isso é uma menssagem de erro</h3>
+    <%} else { %>    
+        <h3> Nenhum erro detectado </h3>
+    <% } %>
+    
+    <% produtos.forEach(function(produto){ %>
+        <hr>
+        <h3><%= produto.nome %></h3>
+        <h4><%= produto.preco %></h4>
+    <% }) %>
+
 </body>
 </html>

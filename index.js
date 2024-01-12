@@ -4,13 +4,24 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-    var nome = "bruno"
-    var lang = "JavaScript"
+app.get('/:nome/:lang', (req, res) => {
+    var nome = req.params.nome;
+    var lang = req.params.lang;
+    var exibirMsg = true;
+
+    var produtos = [
+        {nome: 'Doritos', preco: 3.14},
+        {nome: 'Fanta', preco: 7.15},
+        {nome: 'Arroz', preco: 2.69},
+    ]
+
+
     res.render('index',{
         nome:nome,
         lang:lang,
-        empresa: 'brn solutions'
+        empresa: 'brn solutions',
+        menssagem: exibirMsg,
+        produtos:produtos
     });
 });
 
