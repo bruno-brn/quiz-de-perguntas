@@ -2,6 +2,13 @@
 
 Este é um projeto de um quiz interativo construído com JavaScript.
 
+## 📋 Pré-requisitos 📋
+
+Antes de iniciar, certifique-se de ter os seguintes softwares instalasdo em sua máquina local:
+
+- Node.js
+- MySQL 
+
 ## 📂 Estrutura do Projeto 📂
 
 O projeto está organizado da seguinte maneira:
