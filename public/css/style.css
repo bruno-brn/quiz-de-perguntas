@@ -28,6 +28,10 @@ h1 {
     color: white;
 }
 
-h3 {
+h3.responda {
+    color:  white;
+}
+
+h3.respostas {
     color:  white;
 }

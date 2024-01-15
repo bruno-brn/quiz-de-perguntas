@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require("body-parser")
 const connection = require('./dataBase/database')
 const pergunta = require('./dataBase/Pergunta')
-const resposta = require('./dataBase/Resposta')
+const resposta = require('./dataBase/Resposta');
+const Resposta = require('./dataBase/Resposta');
 
 connection
     .authenticate()
@@ -49,17 +50,35 @@ app.post('/salvarpergunta', (req, res) =>{
 app.get("/pergunta/:id", (req, res) => {
     var id = req.params.id;
     pergunta.findOne({
-        where: { id: id}
+        where: { id: id},
     }).then(pergunta => {
         if(pergunta != undefined){
-            res.render("pergunta",{
-                pergunta: pergunta
+            Resposta.findAll({
+                where: {perguntaId: pergunta.id},
+                order: [['id','DESC']]
+            }).then(resposta => {
+                res.render("pergunta",{
+                    pergunta: pergunta,
+                    resposta: resposta
+                })
             })
         }else{
             res.redirect("/")
         }
     })
 })
+
+app.post("/responder", (req, res) =>{
+    var corpo = req.body.corpo;
+    var perguntaId = req.body.pergunta
+    Resposta.create({
+        corpo: corpo,
+        perguntaId: perguntaId
+    }).then(() =>{
+        res.redirect('/pergunta/'+perguntaId)
+    })
+})
+
 
 app.listen(3000, ()=>{
     console.log('Servidor no ar');
